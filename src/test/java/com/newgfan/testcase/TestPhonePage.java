@@ -183,12 +183,13 @@ public class TestPhonePage {
     }
 
     @Test
-    public void evluateBelow() {
+    public void evluateBelow() throws InterruptedException {
         PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         System.out.println("navtop size:" + page.navtop.size());
         for (int i = 0; i < page.navtop.size(); i++) {
             String navText = page.navtop.get(i).getText();
             System.out.println("navText = " + i + ":" + navText);
+            //遍历每个栏目下的pic
 //            page.navtop.get(i).click();
 //            for(int j = 0;j<page.pic.size();j++){
 //                String beURL = page.pic.get(i).getAttribute("href");
@@ -203,7 +204,75 @@ public class TestPhonePage {
 //
 //            }
         }
+        String beURL = page.picOne.getAttribute("href");
+        page.picOne.click();
+        SwitchToWindow.switchToWindow(driver);
+        Thread.sleep(3000);
+        System.out.println("windowURL = " + SwitchToWindow.window.getCurrentUrl());
+        Assert.assertEquals(
+                SwitchToWindow.window.getCurrentUrl().substring(
+                        SwitchToWindow.window.getCurrentUrl().indexOf("//")),
+                beURL.substring(beURL.indexOf("//")));
 
+        //跳转到第二个页面点击相关阅读
+        String secondURlAboutRead = page.secondPageAboutRead.getAttribute("href");
+        System.out.println("secondURLAboutRead = " + secondURlAboutRead);
+        page.secondPageAboutRead.click();
+        SwitchToWindow.switchToWindow(driver);
+//        String text = page.footTex.getText();
+//        Assert.assertEquals(true,text.contains("北京机锋科技有限公司"));
+        driver.switchTo().window(SwitchToWindow.currentWindow);
+        //返回currentWindow，点击机锋精选第一个标题
+        String jingxuanTex = page.jingxuanTitle.getAttribute("href");
+        System.out.println("jingxuan url = " + jingxuanTex);
+        page.jingxuanTitle.click();
+        SwitchToWindow.switchToWindow(driver);
+//        Assert.assertEquals(true,text.contains("北京机锋科技有限公司"));
+        driver.switchTo().window(SwitchToWindow.currentWindow);
+
+
+    }
+
+    @Test
+    public void tuShang() {
+        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
+        String leftURL = page.leftPic.getAttribute("href");
+        page.leftPic.click();
+        SwitchToWindow.switchToWindow(driver);
+        Assert.assertEquals(
+                SwitchToWindow.window.getCurrentUrl().substring(
+                        SwitchToWindow.window.getCurrentUrl().indexOf("//")),
+                leftURL.substring(leftURL.indexOf("//")));
+        driver.switchTo().window(SwitchToWindow.currentWindow);
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < page.rightPic.size(); i++) {
+            list.add(i, page.rightPic.get(i).getAttribute("href"));
+            String beURL = page.rightPic.get(i).getAttribute("href");
+            page.rightPic.get(i).click();
+            SwitchToWindow.switchToWindow(driver);
+            Assert.assertEquals(
+                    SwitchToWindow.window.getCurrentUrl().substring(
+                            SwitchToWindow.window.getCurrentUrl().indexOf("//")),
+                    beURL.substring(leftURL.indexOf("//")));
+            driver.switchTo().window(SwitchToWindow.currentWindow);
+
+        }
+        System.out.println("right pics = " + list);
+    }
+    //遍历【手机排行】并点击
+    @Test
+    public void phoneSort(){
+        PhonePageElements page =  PageFactory.initElements(driver,PhonePageElements.class);
+        Assert.assertEquals(page.phoneSort.size(),10);
+        ArrayList<String> titles = new ArrayList<String>();
+        for (int i = 0;i<page.sortTitles.size();i++){
+            titles.add(i,page.sortTitles.get(i).getAttribute("href"));
+            String beURL  = page.sortTitles.get(i).getAttribute("href");
+            page.sortTitles.get(i).click();
+            SwitchToWindow.switchToWindow(driver);
+            driver.switchTo().window(SwitchToWindow.currentWindow);
+        }
+        System.out.println("titles :" + titles);
     }
 
 

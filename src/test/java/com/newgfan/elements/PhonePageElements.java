@@ -1,5 +1,7 @@
 package com.newgfan.elements;
 
+import org.apache.xpath.objects.XBoolean;
+import org.apache.xpath.res.XPATHErrorResources;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -99,4 +101,23 @@ public class PhonePageElements {
     public List<WebElement> navtop;
     @FindBy(xpath = "html/body/div[3]/div[4]/div[2]/div[1]/div/div/div/div/a")
     public List<WebElement> pic;
+    @FindBy(xpath = "html/body/div[3]/div[4]/div[2]/div[1]/div/div/div/div[1]/a")
+    public WebElement picOne;
+    @FindBy(xpath = "html/body/div[5]/div[2]/div[2]/div[2]/a")
+    public WebElement secondPageAboutRead;
+
+    @FindBy(xpath = "html/body/div[8]/p[5]/text()")
+    public WebElement footTex;
+
+    //图赏
+    @FindBy(xpath = "html/body/div[3]/div[5]/div/div[1]/a")
+    public WebElement leftPic;
+    @FindBy(xpath = "html/body/div[3]/div[5]/div/div[2]/div/a")
+    public List<WebElement> rightPic;
+    @FindBy(xpath = ".//*[@id='iscroll-rightbox']/ul/li")
+    public List<WebElement> phoneSort;
+    @FindBy(xpath = ".//*[@id='iscroll-rightbox']/ul/li/a")
+    public List<WebElement> sortTitles;
+
+
 }
