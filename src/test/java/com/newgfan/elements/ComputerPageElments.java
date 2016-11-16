@@ -33,6 +33,15 @@ public class ComputerPageElments {
 //    public List<WebElement> tushangPics;
     @FindBy(xpath = ".//*[@id='iscroll-rightbox']/div/a")
     public List<WebElement> rightPics;
+    @FindBy(xpath = ".//*[@id='iscroll-rightbox']/div[2]/a")
+    public WebElement jifengshidian;
+    @FindBy(xpath = ".//*[@id='iscroll-rightbox']/div[1]/a")
+    public WebElement shidianMore;
+    @FindBy(xpath = "html/body/div[5]/div[2]/div[2]/div[2]/a")
+    public WebElement aboutRead;
+    @FindBy(xpath = ".//*[@id='iscroll-rightbox']/ul/li/a")
+    public List<WebElement> wenzhangpaihang;
+
 
 
 

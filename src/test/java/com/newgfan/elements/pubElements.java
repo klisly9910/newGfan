@@ -30,7 +30,7 @@ public class pubElements {
 
     @FindBy(xpath = "html/body/div[3]/div[1]/div[1]/div[3]/ul[1]/li[1]/a[1]")
     public WebElement classify03;
-    //点击标题前的分类进入的页面
+    //点击标题前的分类进入的页面、点击【更多】后的机锋精选
     @FindBy(xpath = ".//*[@id='iscroll-rightbox']/div[2]/ul/li/a")
     public List<WebElement> classifyJingxuan;
 }
