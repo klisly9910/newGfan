@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
  * Created by xiaohua on 11/16 0016.
  */
 public class IsElementExist {
+
     public static boolean doesWebElementExist(WebDriver driver, By selector) throws Exception{
 
         try {

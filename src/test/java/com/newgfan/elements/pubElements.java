@@ -33,4 +33,6 @@ public class pubElements {
     //点击标题前的分类进入的页面、点击【更多】后的机锋精选
     @FindBy(xpath = ".//*[@id='iscroll-rightbox']/div[2]/ul/li/a")
     public List<WebElement> classifyJingxuan;
+    @FindBy(xpath = ".//*[@id='iscroll-rightbox']/ul/li/a")
+    public List<WebElement> wenzhangpaihang;
 }

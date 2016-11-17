@@ -5,6 +5,7 @@ import com.newgfan.elements.pubElements;
 import com.newgfan.pub.Driver;
 import com.newgfan.pub.IsElementExist;
 import com.newgfan.pub.SwitchToWindow;
+import com.newgfan.pumethod.WenZhangJingXuan;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,13 +24,12 @@ import java.util.concurrent.TimeUnit;
 public class TestComputerPage {
     WebDriver back;
     WebDriver driver;
+    WenZhangJingXuan wenZhangJingXuan;
+    ComputerPageElments page;
+    pubElements pubElements;
     String url = "http://pc.gfan.com/";
     By selector404 = By.xpath("html/body/div[3]/div[2]/h3[1]");
     By selector404notfound = By.linkText("404 Not Found");
-
-
-    //     PhonePage page = PageFactory.initElements(driver, PhonePage.class);
-    pubElements pubElements = PageFactory.initElements(driver, pubElements.class);
 
     @BeforeMethod
     public void init() {
@@ -38,6 +38,9 @@ public class TestComputerPage {
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        wenZhangJingXuan = new WenZhangJingXuan(driver);
+        page = PageFactory.initElements(driver, ComputerPageElments.class);
+        pubElements = PageFactory.initElements(driver, pubElements.class);
 
     }
 
@@ -49,8 +52,6 @@ public class TestComputerPage {
 
     @Test
     public void leftBoxs() {
-        ComputerPageElments page = PageFactory.initElements(driver, ComputerPageElments.class);
-        pubElements pubElements = PageFactory.initElements(driver, pubElements.class);
         System.out.println(page.computerBox.size());
         //点击第一个box的title
         String titleURL = page.firstTitle.getAttribute("href");
@@ -79,8 +80,6 @@ public class TestComputerPage {
 
     @Test
     public void secondTitle() {
-        ComputerPageElments page = PageFactory.initElements(driver, ComputerPageElments.class);
-        pubElements pubElements = PageFactory.initElements(driver, pubElements.class);
         //secondTitle
         String secondTitleURL = page.secondTitle.getAttribute("href");
         page.secondTitle.click();
@@ -107,8 +106,6 @@ public class TestComputerPage {
 
     @Test
     public void clssify() {
-        ComputerPageElments page = PageFactory.initElements(driver, ComputerPageElments.class);
-        pubElements pubElements = PageFactory.initElements(driver, pubElements.class);
         String clssifyOne = page.clssifyOne.getAttribute("href");
         page.clssifyOne.click();
         SwitchToWindow.switchToWindow(driver);
@@ -129,7 +126,6 @@ public class TestComputerPage {
     //图赏
     @Test
     public void tushang() {
-        ComputerPageElments page = PageFactory.initElements(driver, ComputerPageElments.class);
         String leftURL = page.tushangLeft.getAttribute("href");
         page.tushangLeft.click();
         SwitchToWindow.switchToWindow(driver);
@@ -163,7 +159,6 @@ public class TestComputerPage {
 
     @Test
     public void tushangBelow() {
-        ComputerPageElments page = PageFactory.initElements(driver, ComputerPageElments.class);
         ArrayList<String> list = new ArrayList<String>();
         Assert.assertEquals(page.tushangBelow.size(), 6);
         for (int i = 0; i < page.tushangBelow.size(); i++) {
@@ -186,8 +181,6 @@ public class TestComputerPage {
     //机锋视点、导购、评测、专题
     @Test
     public void rightPic() throws Exception {
-        ComputerPageElments page = PageFactory.initElements(driver, ComputerPageElments.class);
-        pubElements pubElements = PageFactory.initElements(driver, com.newgfan.elements.pubElements.class);
         //机锋视点-点击第一张图片
         String shidianURL = page.jifengshidian.getAttribute("href");
         page.jifengshidian.click();
@@ -240,29 +233,7 @@ public class TestComputerPage {
     }
     @Test
     public void wenzhangpaihang(){
-        ComputerPageElments page = PageFactory.initElements(driver,ComputerPageElments.class);
-        ArrayList<String> list = new ArrayList<String>();
-        for (int i =0;i<page.wenzhangpaihang.size();i++){
-            list.add(i,page.wenzhangpaihang.get(i).getAttribute("href"));
-            String wenzhangURL = page.wenzhangpaihang.get(i).getAttribute("href");
-            page.wenzhangpaihang.get(i).click();
-            SwitchToWindow.switchToWindow(driver);
-            Assert.assertEquals(SwitchToWindow.window.getCurrentUrl().
-                            substring(SwitchToWindow.window.getCurrentUrl().indexOf("//")),
-                    wenzhangURL.substring(wenzhangURL.indexOf("//")));
-            try {
-                IsElementExist.doesWebElementExist(driver, selector404);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                IsElementExist.doesWebElementExist(driver,selector404notfound);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            driver.switchTo().window(SwitchToWindow.currentWindow);
-        }
-        System.out.println("wenzhangpaihang title url :" + list);
+        wenZhangJingXuan.wenzhangpaihang();
     }
 
 }

@@ -3,6 +3,7 @@ package com.newgfan.testcase;
 import com.newgfan.elements.PhonePageElements;
 import com.newgfan.pub.Driver;
 import com.newgfan.pub.SwitchToWindow;
+import com.newgfan.pumethod.WenZhangJingXuan;
 import com.sun.xml.internal.ws.policy.AssertionSet;
 import com.sun.xml.internal.ws.server.DefaultResourceInjector;
 import org.openqa.selenium.WebDriver;
@@ -24,10 +25,9 @@ import java.util.concurrent.TimeUnit;
 public class TestPhonePage {
     WebDriver back;
     WebDriver driver;
+    WenZhangJingXuan wenZhangJingXuan;
+    PhonePageElements page;
     String url = "http://phone.gfan.com";
-
-
-    // PhonePage page = PageFactory.initElements(driver, PhonePage.class);
 
     @BeforeMethod
     public void init() {
@@ -36,6 +36,8 @@ public class TestPhonePage {
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        wenZhangJingXuan = new WenZhangJingXuan(driver);
+        page = PageFactory.initElements(driver, PhonePageElements.class);
 
     }
 
@@ -47,8 +49,6 @@ public class TestPhonePage {
 
     @Test(enabled = true)
     public void clickLogoImage() {
-        // PhonePage page = new PhonePage(driver);
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         Assert.assertEquals("手机头条", page.phoneTitle.getText());
         page.logoImag.click();
 
@@ -56,14 +56,12 @@ public class TestPhonePage {
 
     @Test(enabled = true)
     public void getPhoneBoxs() {
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         Assert.assertEquals(page.phoneBoxs.size(), 3);
         System.out.println(page.phoneBoxs.size());
     }
 
     @Test(enabled = true)
     public void clickFirstTitle() {
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         List<String> titleTex = new ArrayList<String>();
         for (int i = 0; i < page.phoneBoxs.size(); i++) {
             for (int j = 0; j < page.phoneFirstTitle.size(); j++) {
@@ -89,7 +87,6 @@ public class TestPhonePage {
 
     @Test(enabled = true)
     public void clickClassify() {
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         String beforeURL01 = page.classify01.getAttribute("href");
         page.classify01.click();
         SwitchToWindow.switchToWindow(driver);
@@ -127,7 +124,6 @@ public class TestPhonePage {
     //验证点击进入二级页面-二级页面再次点击
     @Test
     public void secondTitle() throws InterruptedException {
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         page.secondTitle01.click();
         SwitchToWindow.switchToWindow(driver);
 //        Assert.assertEquals(true, page.switchLogo.isDisplayed());
@@ -149,7 +145,6 @@ public class TestPhonePage {
 
     @Test(enabled = true)
     public void information() {
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         System.out.println("information box =" + page.information.size());
         for (int i = 0; i < page.information.size(); i++) {
             String beUrl = page.information.get(i).getAttribute("href");
@@ -166,7 +161,6 @@ public class TestPhonePage {
 
     @Test(enabled = true)
     public void evaluate() {
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         System.out.println("evaluate box =" + page.evaluate.size());
         for (int i = 0; i < 4; i++) {
             String beURL = page.evaluate.get(i).getAttribute("href");
@@ -184,7 +178,6 @@ public class TestPhonePage {
 
     @Test
     public void evluateBelow() throws InterruptedException {
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         System.out.println("navtop size:" + page.navtop.size());
         for (int i = 0; i < page.navtop.size(); i++) {
             String navText = page.navtop.get(i).getText();
@@ -235,7 +228,6 @@ public class TestPhonePage {
 
     @Test
     public void tuShang() {
-        PhonePageElements page = PageFactory.initElements(driver, PhonePageElements.class);
         String leftURL = page.leftPic.getAttribute("href");
         page.leftPic.click();
         SwitchToWindow.switchToWindow(driver);
@@ -262,18 +254,18 @@ public class TestPhonePage {
     //遍历【手机排行】并点击
     @Test
     public void phoneSort(){
-        PhonePageElements page =  PageFactory.initElements(driver,PhonePageElements.class);
-        Assert.assertEquals(page.phoneSort.size(),10);
-        ArrayList<String> titles = new ArrayList<String>();
-        for (int i = 0;i<page.sortTitles.size();i++){
-            titles.add(i,page.sortTitles.get(i).getAttribute("href"));
-            String beURL  = page.sortTitles.get(i).getAttribute("href");
-            page.sortTitles.get(i).click();
-            SwitchToWindow.switchToWindow(driver);
-            driver.switchTo().window(SwitchToWindow.currentWindow);
-        }
-        System.out.println("titles :" + titles);
+        wenZhangJingXuan.wenzhangpaihang();
+//        PhonePageElements page =  PageFactory.initElements(driver,PhonePageElements.class);
+//        Assert.assertEquals(page.phoneSort.size(),10);
+//        ArrayList<String> titles = new ArrayList<String>();
+//        for (int i = 0;i<page.sortTitles.size();i++){
+//            titles.add(i,page.sortTitles.get(i).getAttribute("href"));
+//            String beURL  = page.sortTitles.get(i).getAttribute("href");
+//            page.sortTitles.get(i).click();
+//            SwitchToWindow.switchToWindow(driver);
+//            driver.switchTo().window(SwitchToWindow.currentWindow);
+//        }
+//        System.out.println("titles :" + titles);
     }
-
 
 }
