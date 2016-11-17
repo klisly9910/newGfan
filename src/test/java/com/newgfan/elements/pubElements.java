@@ -33,8 +33,8 @@ public class pubElements {
     public List<WebElement> tushangBelow_Nav;
     @FindBy(xpath = ".//*[@id='snav03']/div[1]/div[2]/div[1]/div/div[1]/a[2]")
     public WebElement zixunfirstpic;
-    @FindBy(xpath = ".//*[@id='enav03']/div[1]/div[2]/div[1]/div/div[1]/a[2]")
-    public WebElement jiadianzixunfirstpic;
+//    @FindBy(xpath = ".//*[@id='enav03']/div[1]/div[2]/div[1]/div/div[1]/a[2]")
+//    public WebElement jiadianzixunfirstpic;
     @FindBy(xpath = ".//*[@id='iscroll-rightbox']/div[2]/a")
     public WebElement jifengshidian_pic;
     @FindBy(xpath = ".//*[@id='iscroll-rightbox']/div[1]/a")
