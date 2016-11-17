@@ -1,5 +1,6 @@
 package com.newgfan.pumethod;
 
+import com.newgfan.elements.JiaDianElements;
 import com.newgfan.elements.pubElements;
 import com.newgfan.pub.IsElementExist;
 import com.newgfan.pub.SwitchToWindow;
@@ -20,9 +21,8 @@ public class JiaDIanzixun {
     }
 
     public void jiadianZixun() throws Exception {
-        pubElements pubElements = PageFactory.initElements(driver, pubElements.class);
-        pubElements.jiadianzixunfirstpic.click();
-        ;
+        JiaDianElements page = PageFactory.initElements(driver, JiaDianElements.class);
+        page.jiadianzixunfirstpic.click();
         SwitchToWindow.switchToWindow(driver);
         IsElementExist.doesWebElementExist(driver, selector404notfound);
         IsElementExist.doesWebElementExist(driver, selector404);
