@@ -2,10 +2,12 @@ package com.newgfan.testcase;
 
 import com.newgfan.elements.PhonePageElements;
 import com.newgfan.pub.Driver;
+import com.newgfan.pub.IsElementExist;
 import com.newgfan.pub.SwitchToWindow;
 import com.newgfan.pumethod.WenZhangJingXuan;
 import com.sun.xml.internal.ws.policy.AssertionSet;
 import com.sun.xml.internal.ws.server.DefaultResourceInjector;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
@@ -28,6 +30,8 @@ public class TestPhonePage {
     WenZhangJingXuan wenZhangJingXuan;
     PhonePageElements page;
     String url = "http://phone.gfan.com";
+    By selector404 = By.xpath("html/body/div[3]/div[2]/h3[1]");
+    By selector404notfound = By.linkText("404 Not Found");
 
     @BeforeMethod
     public void init() {
@@ -48,9 +52,11 @@ public class TestPhonePage {
     }
 
     @Test(enabled = true)
-    public void clickLogoImage() {
+    public void clickLogoImage() throws Exception{
         Assert.assertEquals("手机头条", page.phoneTitle.getText());
         page.logoImag.click();
+        IsElementExist.doesWebElementExist(driver,selector404);
+        IsElementExist.doesWebElementExist(driver,selector404notfound);
 
     }
 
@@ -61,7 +67,7 @@ public class TestPhonePage {
     }
 
     @Test(enabled = true)
-    public void clickFirstTitle() {
+    public void clickFirstTitle() throws Exception{
         List<String> titleTex = new ArrayList<String>();
         for (int i = 0; i < page.phoneBoxs.size(); i++) {
             for (int j = 0; j < page.phoneFirstTitle.size(); j++) {
@@ -76,6 +82,8 @@ public class TestPhonePage {
                                         "//")),
                         parentURL.substring(parentURL.indexOf("//")));
                 Assert.assertEquals(true, page.footerGfanLogo.isDisplayed());
+                IsElementExist.doesWebElementExist(driver,selector404);
+                IsElementExist.doesWebElementExist(driver,selector404notfound);
                 driver.close();
                 // driver.navigate().back();
                 back = driver.switchTo().window(SwitchToWindow.currentWindow);
@@ -86,7 +94,7 @@ public class TestPhonePage {
     }
 
     @Test(enabled = true)
-    public void clickClassify() {
+    public void clickClassify() throws Exception{
         String beforeURL01 = page.classify01.getAttribute("href");
         page.classify01.click();
         SwitchToWindow.switchToWindow(driver);
@@ -94,6 +102,8 @@ public class TestPhonePage {
                 SwitchToWindow.window.getCurrentUrl().substring(
                         SwitchToWindow.window.getCurrentUrl().indexOf("//")),
                 beforeURL01.substring(beforeURL01.indexOf("//")));
+        IsElementExist.doesWebElementExist(driver,selector404);
+        IsElementExist.doesWebElementExist(driver,selector404notfound);
         Assert.assertEquals(true, page.classifyLogo.isDisplayed());
         driver.close();
         back = driver.switchTo().window(SwitchToWindow.currentWindow);
@@ -105,6 +115,8 @@ public class TestPhonePage {
                 SwitchToWindow.window.getCurrentUrl().substring(
                         SwitchToWindow.window.getCurrentUrl().indexOf("//")),
                 beforeURL02.substring(beforeURL02.indexOf("//")));
+        IsElementExist.doesWebElementExist(driver,selector404);
+        IsElementExist.doesWebElementExist(driver,selector404notfound);
         Assert.assertEquals(true, page.classifyLogo.isDisplayed());
 
         driver.close();
@@ -117,13 +129,15 @@ public class TestPhonePage {
                 SwitchToWindow.window.getCurrentUrl().substring(
                         SwitchToWindow.window.getCurrentUrl().indexOf("//")),
                 beforeURL03.substring(beforeURL03.indexOf("//")));
+        IsElementExist.doesWebElementExist(driver,selector404);
+        IsElementExist.doesWebElementExist(driver,selector404notfound);
         Assert.assertEquals(true, page.classifyLogo.isDisplayed());
 
     }
 
     //验证点击进入二级页面-二级页面再次点击
     @Test
-    public void secondTitle() throws InterruptedException {
+    public void secondTitle() throws InterruptedException,Exception{
         page.secondTitle01.click();
         SwitchToWindow.switchToWindow(driver);
 //        Assert.assertEquals(true, page.switchLogo.isDisplayed());
@@ -131,6 +145,8 @@ public class TestPhonePage {
         page.aboutRead.click();
         SwitchToWindow.switchToWindow(driver);
         Assert.assertEquals(true, page.getFootLogo.isDisplayed());
+        IsElementExist.doesWebElementExist(driver,selector404);
+        IsElementExist.doesWebElementExist(driver,selector404notfound);
         page.jingxuanTitle.click();
         SwitchToWindow.switchToWindow(driver);
 //        Assert.assertEquals(true,page.getFootLogo.isDisplayed());
@@ -144,7 +160,7 @@ public class TestPhonePage {
     }
 
     @Test(enabled = true)
-    public void information() {
+    public void information() throws Exception{
         System.out.println("information box =" + page.information.size());
         for (int i = 0; i < page.information.size(); i++) {
             String beUrl = page.information.get(i).getAttribute("href");
@@ -155,12 +171,14 @@ public class TestPhonePage {
                     SwitchToWindow.window.getCurrentUrl().substring(
                             SwitchToWindow.window.getCurrentUrl().indexOf("//")),
                     beUrl.substring(beUrl.indexOf("//")));
+            IsElementExist.doesWebElementExist(driver,selector404);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
             driver.switchTo().window(SwitchToWindow.currentWindow);
         }
     }
 
     @Test(enabled = true)
-    public void evaluate() {
+    public void evaluate() throws Exception{
         System.out.println("evaluate box =" + page.evaluate.size());
         for (int i = 0; i < 4; i++) {
             String beURL = page.evaluate.get(i).getAttribute("href");
@@ -171,13 +189,15 @@ public class TestPhonePage {
                     SwitchToWindow.window.getCurrentUrl().substring(
                             SwitchToWindow.window.getCurrentUrl().indexOf("//")),
                     beURL.substring(beURL.indexOf("//")));
+            IsElementExist.doesWebElementExist(driver,selector404);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
             driver.switchTo().window(SwitchToWindow.currentWindow);
         }
 
     }
 
     @Test
-    public void evluateBelow() throws InterruptedException {
+    public void evluateBelow() throws InterruptedException,Exception {
         System.out.println("navtop size:" + page.navtop.size());
         for (int i = 0; i < page.navtop.size(); i++) {
             String navText = page.navtop.get(i).getText();
@@ -206,6 +226,8 @@ public class TestPhonePage {
                 SwitchToWindow.window.getCurrentUrl().substring(
                         SwitchToWindow.window.getCurrentUrl().indexOf("//")),
                 beURL.substring(beURL.indexOf("//")));
+        IsElementExist.doesWebElementExist(driver,selector404);
+        IsElementExist.doesWebElementExist(driver,selector404notfound);
 
         //跳转到第二个页面点击相关阅读
         String secondURlAboutRead = page.secondPageAboutRead.getAttribute("href");
@@ -227,7 +249,7 @@ public class TestPhonePage {
     }
 
     @Test
-    public void tuShang() {
+    public void tuShang() throws Exception{
         String leftURL = page.leftPic.getAttribute("href");
         page.leftPic.click();
         SwitchToWindow.switchToWindow(driver);
@@ -246,6 +268,8 @@ public class TestPhonePage {
                     SwitchToWindow.window.getCurrentUrl().substring(
                             SwitchToWindow.window.getCurrentUrl().indexOf("//")),
                     beURL.substring(leftURL.indexOf("//")));
+            IsElementExist.doesWebElementExist(driver,selector404);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
             driver.switchTo().window(SwitchToWindow.currentWindow);
 
         }
