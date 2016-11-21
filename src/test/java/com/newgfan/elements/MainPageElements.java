@@ -38,6 +38,22 @@ public class MainPageElements {
     public List<WebElement> tushangright;
     @FindBy(xpath = ".//*[@id='nav02']/div[2]/div/a")
     public List<WebElement> fengtushangbelow;
+    @FindBy(xpath = ".//*[@id='nav03']/div/div[1]/a")
+    public WebElement fengkandian;
+    @FindBy(xpath = ".//*[@id='nav03']/div/div[2]/div/a")
+    public List<WebElement> fengkandianrightpic;
+    @FindBy(xpath = ".//*[@id='nav04']/h2/a")
+    public List<WebElement> game_yingyong;
+    @FindBy(xpath = ".//*[@id='nav04']/div[1]/div[1]/a")
+    public WebElement game_yingyongleft;
+    @FindBy(xpath = ".//*[@id='nav04']/div[1]/div[2]/div/a")
+    public List<WebElement> game_yingyongright;
+    @FindBy(xpath = ".//*[@id='nav04']/div[2]/div/a")
+    public List<WebElement> game_yingyongbelow;
+    @FindBy(xpath = ".//*[@id='nav05']/div/h2/a")
+    public List<WebElement> bbsNav;
+    @FindBy(xpath = ".//*[@id='nav05']/div/div/div[1]/div/a")
+    public List<WebElement> bbspics;
 
 
 }

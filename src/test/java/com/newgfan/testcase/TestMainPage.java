@@ -5,7 +5,9 @@ import com.newgfan.pub.Driver;
 import com.newgfan.pub.IsElementExist;
 import com.newgfan.pub.SwitchToWindow;
 import com.sun.xml.internal.ws.api.ha.StickyFeature;
+import com.sun.xml.internal.ws.server.DefaultResourceInjector;
 import jdk.management.resource.internal.inst.FileOutputStreamRMHooks;
+import org.hamcrest.core.Is;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +32,7 @@ public class TestMainPage {
     MainPageElements mainPageElements;
     By selector404 = By.xpath("html/body/div[3]/div[2]/h3[1]");
     By selector404notfound = By.linkText("404 Not Found");
+    By selectorerrormessage = By.linkText("您要查看的信息不存在或者还未通过审批！");
 
     @BeforeMethod
     public void init() {
@@ -158,6 +161,107 @@ public class TestMainPage {
             driver.switchTo().window(SwitchToWindow.currentWindow);
         }
         System.out.println("tushang below :" + tushangbelow);
+    }
+    @Test
+    public void fengkandian() throws Exception{
+        mainPageElements.fengkandian.click();
+        SwitchToWindow.switchToWindow(driver);
+        IsElementExist.doesWebElementExist(driver,selector404);
+        IsElementExist.doesWebElementExist(driver,selector404notfound);
+        driver.switchTo().window(SwitchToWindow.currentWindow);
+        ArrayList<String> rightpics = new ArrayList<String>();
+        for (int i = 0;i<mainPageElements.fengkandianrightpic.size();i++){
+            rightpics.add(i,mainPageElements.fengkandianrightpic.get(i).getAttribute("href"));
+            mainPageElements.fengkandianrightpic.get(i).click();
+            SwitchToWindow.switchToWindow(driver);
+            IsElementExist.doesWebElementExist(driver,selector404);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
+            IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+            driver.switchTo().window(SwitchToWindow.currentWindow);
+        }
+        System.out.println("fengkandian right pic :" + rightpics);
+
+
+    }
+    @Test
+    public void game_yingyong() throws Exception{
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0;i<mainPageElements.game_yingyong.size();i++){
+            list.add(i,mainPageElements.game_yingyong.get(i).getAttribute("href"));
+            mainPageElements.game_yingyong.get(i).click();
+            SwitchToWindow.switchToWindow(driver);
+            IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
+            IsElementExist.doesWebElementExist(driver,selector404);
+            driver.switchTo().window(SwitchToWindow.currentWindow);
+
+        }
+        System.out.println("game_yingyong list :" + list);
+    }
+    @Test
+    public void game_yingyongpic() throws Exception{
+        mainPageElements.game_yingyongleft.click();
+        SwitchToWindow.switchToWindow(driver);
+        IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+        IsElementExist.doesWebElementExist(driver,selector404notfound);
+        IsElementExist.doesWebElementExist(driver,selector404);
+        driver.switchTo().window(SwitchToWindow.currentWindow);
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0;i<mainPageElements.game_yingyongright.size();i++){
+            list.add(i,mainPageElements.game_yingyongright.get(i).getAttribute("href"));
+            mainPageElements.game_yingyongright.get(i).click();
+            SwitchToWindow.switchToWindow(driver);
+            IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
+            IsElementExist.doesWebElementExist(driver,selector404);
+            driver.switchTo().window(SwitchToWindow.currentWindow);
+        }
+        System.out.println("game_yingyongpic list right url :" + list);
+
+
+    }
+    @Test
+    public void game_yingyongbelow() throws Exception{
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0;i<mainPageElements.game_yingyongbelow.size();i++){
+            list.add(i,mainPageElements.fengtushangbelow.get(i).getAttribute("href"));
+            mainPageElements.fengtushangbelow.get(i).click();
+            SwitchToWindow.switchToWindow(driver);
+            IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
+            IsElementExist.doesWebElementExist(driver,selector404);
+            driver.switchTo().window(SwitchToWindow.currentWindow);
+        }
+        System.out.println("game_yingyongbelow list :" + list);
+
+    }
+    @Test
+    public void bbsNav() throws Exception{
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0;i<mainPageElements.bbsNav.size();i++){
+            list.add(i,mainPageElements.bbsNav.get(i).getAttribute("href"));
+            mainPageElements.bbsNav.get(i).click();
+            SwitchToWindow.switchToWindow(driver);
+            IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
+            IsElementExist.doesWebElementExist(driver,selector404);
+            driver.switchTo().window(SwitchToWindow.currentWindow);
+        }
+        System.out.println("bbsNav:" + list);
+    }
+    @Test
+    public void bbspics() throws Exception{
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i =0;i<mainPageElements.bbspics.size();i++){
+            list.add(i,mainPageElements.bbspics.get(i).getAttribute("href"));
+            mainPageElements.bbspics.get(i).click();
+            SwitchToWindow.switchToWindow(driver);
+            IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+            IsElementExist.doesWebElementExist(driver,selector404notfound);
+            IsElementExist.doesWebElementExist(driver,selector404);
+            driver.switchTo().window(SwitchToWindow.currentWindow);
+        }
+        System.out.println("bbs pics :" + list);
     }
 
 
