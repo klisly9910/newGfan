@@ -43,12 +43,12 @@ public class TestTopNavgation {
     }
     @Test
     public void topnavgation() throws Exception{
-        topNavgation.gfanlogo.click();
-        SwitchToWindow.switchToWindow(driver);
-        IsElementExist.doesWebElementExist(driver,selector404);
-        IsElementExist.doesWebElementExist(driver,selector404notfound);
-        IsElementExist.doesWebElementExist(driver,selectorerrormessage);
-        driver.switchTo().window(SwitchToWindow.currentWindow);
+//        topNavgation.gfanlogo.click();
+//        SwitchToWindow.switchToWindow(driver);
+//        IsElementExist.doesWebElementExist(driver,selector404);
+//        IsElementExist.doesWebElementExist(driver,selector404notfound);
+//        IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+//        driver.switchTo().window(SwitchToWindow.currentWindow);
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0;i<topNavgation.topnav.size();i++){
             list.add(i,topNavgation.topnav.get(i).getAttribute("href"));

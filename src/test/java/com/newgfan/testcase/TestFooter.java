@@ -4,6 +4,7 @@ import com.newgfan.elements.Footer;
 import com.newgfan.elements.TopNavgation;
 import com.newgfan.pub.Driver;
 import com.newgfan.pub.IsElementExist;
+import com.newgfan.pub.ScreenShot;
 import com.newgfan.pub.SwitchToWindow;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class TestFooter {
     WebDriver driver;
     Footer footer;
+    ScreenShot screenShot;
     By selector404 = By.xpath("html/body/div[3]/div[2]/h3[1]");
     By selector404notfound = By.linkText("404 Not Found");
     By selectorerrormessage = By.linkText("您要查看的信息不存在或者还未通过审批！");
@@ -35,6 +37,7 @@ public class TestFooter {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
         footer = PageFactory.initElements(driver,Footer.class);
+        screenShot = new ScreenShot(driver);
 
     }
     @AfterMethod
@@ -52,6 +55,7 @@ public class TestFooter {
             IsElementExist.doesWebElementExist(driver,selector404);
             IsElementExist.doesWebElementExist(driver,selector404notfound);
             IsElementExist.doesWebElementExist(driver,selectorerrormessage);
+            screenShot.takeScreenshot(driver);
             driver.switchTo().window(SwitchToWindow.currentWindow);
         }
         System.out.println("footer top url :" + list);
