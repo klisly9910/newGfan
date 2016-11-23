@@ -4,15 +4,15 @@
     <test name="firefoxTest">
         <!--<parameter name="browser" value="firefox" />-->
         <classes>
-            <class name="com.newgfan.testcase.TestMainPage"/>
-            <class name="com.newgfan.testcase.TestComputerPage" />
-            <class name="com.newgfan.testcase.TestPhonePage" />
-            <class name="com.newgfan.testcase.TestJiaDianPage" />
-            <class name="com.newgfan.testcase.TestOfficePage"/>
-            <class name="com.newgfan.testcase.TestSmartPage" />
-            <class name="com.newgfan.testcase.TestNewMedia" />
+            <!--<class name="com.newgfan.testcase.TestMainPage"/>-->
+            <!--<class name="com.newgfan.testcase.TestComputerPage" />-->
+            <!--<class name="com.newgfan.testcase.TestPhonePage" />-->
+            <!--<class name="com.newgfan.testcase.TestJiaDianPage" />-->
+            <!--<class name="com.newgfan.testcase.TestOfficePage"/>-->
+            <!--<class name="com.newgfan.testcase.TestSmartPage" />-->
+            <!--<class name="com.newgfan.testcase.TestNewMedia" />-->
             <class name="com.newgfan.testcase.TestTopNavgation"/>
-            <class name="com.newgfan.testcase.TestFooter"/>
+            <!--<class name="com.newgfan.testcase.TestFooter"/>-->
         </classes>
     </test>
     <!--<test name="chromeTest">-->
@@ -43,6 +43,10 @@
             <!--<class name="com.newgfan.testcase.TestFooter"/>-->
         <!--</classes>-->
     <!--</test>-->
-
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+    </listeners>
+    <!--<usedefaultlisteners name="false" />-->
 
 </suite>
