@@ -87,6 +87,9 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                    <compilerArguments>
+                        <bootclasspath>C:\Program Files\Java\jre1.8.0_66\lib/rt.jar</bootclasspath>
+                    </compilerArguments>
                 </configuration>
             </plugin>
         </plugins>
