@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="testbrowser" parallel="tests" >
-    <test name="firefoxTest">
+<suite name="testnewgfan" parallel="tests" >
+    <test name="usechrome">
         <!--<parameter name="browser" value="firefox" />-->
         <classes>
-            <!--<class name="com.newgfan.testcase.TestMainPage"/>-->
-            <!--<class name="com.newgfan.testcase.TestComputerPage" />-->
-            <!--<class name="com.newgfan.testcase.TestPhonePage" />-->
-            <!--<class name="com.newgfan.testcase.TestJiaDianPage" />-->
-            <!--<class name="com.newgfan.testcase.TestOfficePage"/>-->
-            <!--<class name="com.newgfan.testcase.TestSmartPage" />-->
-            <!--<class name="com.newgfan.testcase.TestNewMedia" />-->
+            <!--<class name="com.newgfan.testcase.Testoutput"/>-->
+            <class name="com.newgfan.testcase.TestMainPage"/>
+            <class name="com.newgfan.testcase.TestComputerPage" />
+            <class name="com.newgfan.testcase.TestPhonePage" />
+            <class name="com.newgfan.testcase.TestJiaDianPage" />
+            <class name="com.newgfan.testcase.TestOfficePage"/>
+            <class name="com.newgfan.testcase.TestSmartPage" />
+            <class name="com.newgfan.testcase.TestNewMedia" />
             <class name="com.newgfan.testcase.TestTopNavgation"/>
-            <!--<class name="com.newgfan.testcase.TestFooter"/>-->
+            <class name="com.newgfan.testcase.TestFooter"/>
         </classes>
     </test>
     <!--<test name="chromeTest">-->
